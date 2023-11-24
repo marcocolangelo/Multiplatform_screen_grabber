@@ -1,0 +1,10 @@
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\clipboard-89161bdc5a1d4416.rmeta: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\windows_clipboard.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\nop_clipboard.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\libclipboard-89161bdc5a1d4416.rlib: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\windows_clipboard.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\nop_clipboard.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\clipboard-89161bdc5a1d4416.d: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\windows_clipboard.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\nop_clipboard.rs
+
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\lib.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\common.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\windows_clipboard.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\clipboard-0.5.0\src\nop_clipboard.rs:

@@ -1,0 +1,9 @@
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\futures_executor-ca3e26720798a8af.rmeta: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\local_pool.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\thread_pool.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\unpark_mutex.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\enter.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\futures_executor-ca3e26720798a8af.d: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\local_pool.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\thread_pool.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\unpark_mutex.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\enter.rs
+
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\lib.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\local_pool.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\thread_pool.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\unpark_mutex.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-executor-0.3.29\src\enter.rs:

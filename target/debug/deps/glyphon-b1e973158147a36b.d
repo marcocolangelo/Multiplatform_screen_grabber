@@ -1,0 +1,11 @@
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\glyphon-b1e973158147a36b.rmeta: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\error.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_atlas.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_render.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\shader.wgsl
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\libglyphon-b1e973158147a36b.rlib: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\error.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_atlas.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_render.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\shader.wgsl
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\glyphon-b1e973158147a36b.d: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\error.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_atlas.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_render.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\shader.wgsl
+
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\lib.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\error.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_atlas.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\text_render.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\glyphon-0.3.0\src\shader.wgsl:

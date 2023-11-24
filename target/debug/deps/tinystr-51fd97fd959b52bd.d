@@ -1,0 +1,11 @@
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\tinystr-51fd97fd959b52bd.rmeta: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\macros.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\ascii.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\asciibyte.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\error.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\int_ops.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\unvalidated.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\tinystr-51fd97fd959b52bd.d: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\macros.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\ascii.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\asciibyte.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\error.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\int_ops.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\unvalidated.rs
+
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\lib.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\macros.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\ascii.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\asciibyte.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\error.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\int_ops.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tinystr-0.7.4\src\unvalidated.rs:

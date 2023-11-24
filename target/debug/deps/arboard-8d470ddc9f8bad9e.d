@@ -1,0 +1,10 @@
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\arboard-8d470ddc9f8bad9e.rmeta: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\mod.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\windows.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\libarboard-8d470ddc9f8bad9e.rlib: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\mod.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\windows.rs
+
+D:\Desktop\I ANNO LM\II SEMESTRE\Programmazione di sistema\multiplatform_screen_grabber\target\debug\deps\arboard-8d470ddc9f8bad9e.d: C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\lib.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\common.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\mod.rs C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\windows.rs
+
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\lib.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\common.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\mod.rs:
+C:\Users\Marco\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arboard-3.2.1\src\platform\windows.rs:
