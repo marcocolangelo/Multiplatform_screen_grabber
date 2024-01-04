@@ -21,6 +21,8 @@ use crate::shortkeys_window;
 use crate::window_format;
 use image::{EncodableLayout, ImageBuffer, Rgba};
 use scrap::Display;
+use std::thread;
+use std::time::Duration;
 
 #[derive(Clone, Data, Lens)]
 pub struct AppData {
@@ -102,6 +104,7 @@ impl Widget<AppData> for DrawingArea {
         ctx.request_focus();
         match event {
             druid::Event::Command(cmd) if cmd.is(ENTIRE_SCREEN) => {
+                thread::sleep(Duration::from_millis(500));
                 if data.capture_screen {
                     let start_position = Some(Point { x: 0., y: 0. });
                     let end_position = Some(Point::new(
@@ -709,7 +712,7 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                             }
                             if found == true {
                                 //data.hotkeys.clear();
-                                println!("Hotkeys clipboard attivata!");
+                                //println!("Hotkeys clipboard attivata!");
                                 data.attivazione.clear();
                                 data.is_found = true;
                                 data.last_key_event = None;
