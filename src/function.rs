@@ -28,7 +28,9 @@ pub(crate) fn some_fields_are_equal(data: &drawing_area::AppData) -> bool {
         || (data.start_image_modifier == data.edit_image_modifier
             && data.start_image_key == data.edit_image_key)
         || (data.start_image_modifier == data.quit_app_modifier
-            && data.start_image_key == data.quit_app_modifier)
+            && data.start_image_key == data.quit_app_key)
+        || (data.start_image_modifier == data.entire_screen_modifier
+            && data.start_image_key == data.entire_screen_key)
         || (data.save_image_modifier == data.quit_app_modifier
             && data.save_image_key == data.quit_app_key)
         || (data.save_image_modifier == data.copy_clipboard_modifier
@@ -39,6 +41,8 @@ pub(crate) fn some_fields_are_equal(data: &drawing_area::AppData) -> bool {
             && data.save_image_key == data.restart_app_key)
         || (data.save_image_modifier == data.edit_image_modifier
             && data.save_image_key == data.edit_image_key)
+        || (data.save_image_modifier == data.entire_screen_modifier
+            && data.save_image_key == data.entire_screen_key)
         || (data.quit_app_modifier == data.edit_image_modifier
             && data.quit_app_key == data.edit_image_key)
         || (data.quit_app_modifier == data.copy_clipboard_modifier
@@ -47,18 +51,28 @@ pub(crate) fn some_fields_are_equal(data: &drawing_area::AppData) -> bool {
             && data.quit_app_key == data.restart_app_key)
         || (data.quit_app_modifier == data.restart_format_app_modifier
             && data.quit_app_key == data.restart_format_app_key)
+        || (data.quit_app_modifier == data.entire_screen_modifier
+            && data.quit_app_key == data.entire_screen_key)
         || (data.edit_image_modifier == data.restart_app_modifier
             && data.edit_image_key == data.restart_app_key)
         || (data.edit_image_modifier == data.copy_clipboard_modifier
             && data.edit_image_key == data.copy_clipboard_key)
+        || (data.edit_image_modifier == data.entire_screen_modifier
+            && data.edit_image_key == data.entire_screen_key)
         || (data.restart_app_modifier == data.copy_clipboard_modifier
             && data.restart_app_key == data.copy_clipboard_key)
         || (data.restart_app_modifier == data.restart_format_app_modifier
             && data.restart_app_key == data.restart_format_app_key)
+        || (data.restart_app_modifier == data.entire_screen_modifier
+            && data.restart_app_key == data.entire_screen_key)
         || (data.edit_image_modifier == data.restart_format_app_modifier
             && data.edit_image_key == data.restart_format_app_key)
         || (data.copy_clipboard_modifier == data.restart_format_app_modifier
             && data.copy_clipboard_key == data.restart_format_app_key)
+        || (data.entire_screen_modifier == data.restart_format_app_modifier
+            && data.entire_screen_key == data.restart_format_app_key)
+        || (data.copy_clipboard_modifier == data.entire_screen_modifier
+            && data.copy_clipboard_key == data.entire_screen_key)
     {
         true
     } else {
@@ -78,6 +92,8 @@ pub(crate) fn are_all_fields_completed(data: &drawing_area::AppData) -> bool {
             || data.restart_format_app_key != "".to_string())
         && (data.copy_clipboard_modifier != "None".to_string()
             || data.copy_clipboard_key != "".to_string())
+        && (data.entire_screen_modifier != "None".to_string()
+            || data.entire_screen_key != "".to_string())
     {
         true
     } else {
@@ -95,7 +111,6 @@ pub(crate) fn edit_rect(
         DragHandle::TopLeft => {
             data.rect.x0 = mouse_event.pos.x;
             data.rect.y0 = mouse_event.pos.y;
-            // let pos = ctx.to_screen(druid::Point::new(mouse_event.pos.x, mouse_event.pos.y));
 
             let coord = druid::Point { x: pos.x, y: pos.y };
             data.start_position_to_display = Some(druid::Point {
@@ -104,13 +119,10 @@ pub(crate) fn edit_rect(
             });
             data.start_position = Some(coord);
             data.is_selecting = true;
-
-            //println!("{:?}, {:?}",data.start_position,data.end_position);
         }
         DragHandle::BottomRight => {
             data.rect.x1 = mouse_event.pos.x;
             data.rect.y1 = mouse_event.pos.y;
-            // let pos = ctx.to_screen(druid::Point::new(mouse_event.pos.x, mouse_event.pos.y));
 
             let coord = druid::Point { x: pos.x, y: pos.y };
             data.end_position_to_display = Some(druid::Point {
@@ -123,7 +135,6 @@ pub(crate) fn edit_rect(
         DragHandle::BottomLeft => {
             data.rect.x0 = mouse_event.pos.x;
             data.rect.y1 = mouse_event.pos.y;
-            // let pos = ctx.to_screen(druid::Point::new(mouse_event.pos.x, mouse_event.pos.y));
 
             let coord = druid::Point {
                 x: data.end_position.unwrap().x,
@@ -148,7 +159,6 @@ pub(crate) fn edit_rect(
         DragHandle::TopRight => {
             data.rect.x1 = mouse_event.pos.x;
             data.rect.y0 = mouse_event.pos.y;
-            // let pos = ctx.to_screen(druid::Point::new(mouse_event.pos.x, mouse_event.pos.y));
 
             let coord = druid::Point {
                 x: pos.x,

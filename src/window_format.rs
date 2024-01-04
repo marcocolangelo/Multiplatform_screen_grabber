@@ -55,19 +55,12 @@ pub(crate) fn build_ui() -> impl Widget<AppData> {
             .transparent(true)
             .set_window_state(druid_shell::WindowState::Maximized);
 
-        // let id = main_window.id.clone();
         ctx.new_window(main_window);
         data.switch_window = true;
-        // ctx.submit_command(druid::commands::SHOW_WINDOW.to(id));
 
         ctx.submit_command(druid::commands::CLOSE_WINDOW.to(ctx.window_id()));
         ctx.set_handled();
     });
-
-    // let textbox = TextBox::new()
-    //     .with_placeholder("choose the name of the screen (default screenshot_grabbed)")
-    //     .lens(AppData::label)
-    //     .padding(3.0);
 
     Flex::column()
         .with_child(Label::new("Default name: screenshot_grabbed"))

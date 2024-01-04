@@ -86,6 +86,31 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 })
                 .fix_size(26., 26.),
         );
+    let entire_screen = Flex::row()
+        .with_child(Label::new("Entire screen modifier: "))
+        .with_child(
+            RadioGroup::row(vec![
+                ("Ctrl", "Ctrl".to_string()),
+                ("Shift", "Shift".to_string()),
+                ("Escape", "Escape".to_string()),
+                ("Enter", "Enter".to_string()),
+                ("None", "None".to_string()),
+            ])
+            .border(Color::GRAY, 0.5)
+            .lens(drawing_area::AppData::entire_screen_modifier),
+        )
+        .with_spacer(30.)
+        .with_child(Label::new(" Key: "))
+        .with_child(
+            TextBox::new()
+                .controller(MyController)
+                .lens(drawing_area::AppData::entire_screen_key)
+                .disabled_if(|data, _| {
+                    data.entire_screen_modifier == "Escape"
+                        || data.entire_screen_modifier == "Enter"
+                })
+                .fix_size(26., 26.),
+        );
 
     let quit_app = Flex::row()
         .with_child(Label::new("Quit modifier: "))
@@ -240,7 +265,7 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
     let apply_button =
         Button::new("Apply").on_click(|ctx, data: &mut drawing_area::AppData, _env| {
             // Qui puoi definire le tue HotKey basate sui valori in data
-            data.hotkeys = Vec::new();
+            data.hotkeys.clear();
             if data.save_image_modifier.eq("Shift") {
                 data.save_image_key.make_ascii_uppercase();
             }
@@ -268,6 +293,10 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 );
             }
             data.hotkeys.push(shortcut);
+
+            if data.start_image_modifier.eq("Shift") {
+                data.start_image_key.make_ascii_uppercase();
+            }
             if data.start_image_modifier.eq("Shift") {
                 data.start_image_key.make_ascii_uppercase();
             }
@@ -433,6 +462,34 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
             }
             data.hotkeys.push(shortcut);
 
+            if data.entire_screen_modifier.eq("Shift") {
+                data.entire_screen_key.make_ascii_uppercase();
+            }
+            let entire_screen_modifier = match data.entire_screen_modifier.as_str() {
+                "Ctrl" => Some(Key::Control),
+                "Shift" => Some(Key::Shift),
+                "Escape" => Some(Key::Escape),
+                "Enter" => Some(Key::Enter),
+                "None" => None,
+                _ => None,
+            };
+            let key = data.entire_screen_key.clone();
+            let mut shortcut = MyHotkey {
+                keys: HashMap::new(),
+            };
+            if !key.is_empty() {
+                shortcut
+                    .keys
+                    .insert(Key::Character(key.clone()), Key::Character(key.clone()));
+            }
+            if entire_screen_modifier != None {
+                shortcut.keys.insert(
+                    entire_screen_modifier.clone().unwrap(),
+                    entire_screen_modifier.clone().unwrap(),
+                );
+            }
+            data.hotkeys.push(shortcut);
+
             let format_window = WindowDesc::new(window_format::build_ui())
                 .transparent(false)
                 .title("Choose the format. Default is .png")
@@ -441,13 +498,9 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 .set_always_on_top(true);
 
             if function::are_all_fields_completed(data) && !function::some_fields_are_equal(data) {
-                //data.hotkeys.sort_by(|a, b| b.len().cmp(&a.len()));
                 if data.show_drawing {
                     let display_primary = Display::primary().expect("error");
                     let main_window = WindowDesc::new(drawing_area::build_ui())
-                        //.title(LocalizedString::new("Screen Capture Utility"))
-                        //.show_titlebar(false)
-                        //.set_level(druid::WindowLevel::AppWindow)
                         .with_min_size(Size::new(
                             display_primary.width() as f64,
                             display_primary.height() as f64,
@@ -502,6 +555,8 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
         .with_child(quit_app)
         .with_spacer(20.)
         .with_child(edit_image)
+        .with_spacer(20.)
+        .with_child(entire_screen)
         .with_spacer(20.)
         .with_child(cancel_image)
         .with_spacer(20.)

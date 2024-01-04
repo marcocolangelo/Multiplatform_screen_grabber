@@ -36,10 +36,10 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                         .transparent(true)
                         .set_window_state(druid_shell::WindowState::Maximized);
 
-                    // let id = main_window.id.clone();
+
                     ctx.new_window(main_window);
                     data.switch_window = true;
-                    // ctx.submit_command(druid::commands::SHOW_WINDOW.to(id));
+
 
                     ctx.submit_command(druid::commands::CLOSE_WINDOW.to(ctx.window_id()));
                     ctx.set_handled();
@@ -68,23 +68,18 @@ pub(crate) fn build_ui() -> impl Widget<AppData> {
             .transparent(true)
             .set_window_state(druid_shell::WindowState::Maximized);
 
-        // let id = main_window.id.clone();
         ctx.new_window(main_window);
         data.switch_window = true;
-        // ctx.submit_command(druid::commands::SHOW_WINDOW.to(id));
 
         ctx.submit_command(druid::commands::CLOSE_WINDOW.to(ctx.window_id()));
         ctx.set_handled();
     });
 
-    // let textbox = TextBox::new()
-    //     .with_placeholder("choose the name of the screen (default screenshot_grabbed)")
-    //     .lens(AppData::label)
-    //     .padding(3.0);
     let mut column = Flex::column();
 
     let instructions = vec![
         ("Start: ", "Pressing this button you are able to make the user interface disappear and capture the screen. \nClicking and dragging the mouse pointer you can draw the area to capture,\notherwise just clicking on the screen you can capture the whole monitor"),
+        ("Entire screen: ", "Pressing this button you are able to capture the entire screen"),
         ("Save screen: ", "Pressing this button you can save your captured image, \ndefault path is the same path as the executable of the program "),
         ("Close: ", "Pressing this button the entire application it's closed."),
         ("Edit: ", "Pressing this button you are able to edit your capture area, by clicking on one of the drawn rectangle corners and then \ndragging the clicked corner. To stop your editing step you can click on any other point of the screen"),
@@ -120,17 +115,4 @@ pub(crate) fn build_ui() -> impl Widget<AppData> {
     }
     return column.with_child(button) .controller(MyViewHandler);
 
-    // Flex::column()
-    //     .with_child(
-    //         Flex::row().with_child(
-    //         Label::new("Start:").with_font(
-    //             FontDescriptor::new(FontFamily::SYSTEM_UI).with_weight(FontWeight::BOLD),
-    //         ),
-    //     )
-    //     .with_child(Label::new("pressing this button you are able to make the user interface disappear and capture the screen.\n
-    //     Clicking and dragging the mouse pointer you can draw the area to capture,\n
-    //     otherwise just clicking on the screen you can capture the whole monitor\n
-    //     ")))
-    // .with_child(button)
-    // .controller(MyViewHandler)
 }

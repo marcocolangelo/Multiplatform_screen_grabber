@@ -4,7 +4,7 @@ use std::{
 };
 
 use drawing_area::Conventions;
-use druid::LocalizedString;
+use druid::{LocalizedString, Point};
 use image::ImageBuffer;
 use window_format::MyRadio;
 
@@ -33,6 +33,8 @@ fn main() {
         edit_image_key: (Key::Character("m".to_string())).to_string(),
         start_image_modifier: "None".into(),
         start_image_key: (Key::Character("s".to_string())).to_string(),
+        entire_screen_modifier: "None".into(),
+        entire_screen_key: (Key::Character("a".to_string())).to_string(),
         restart_app_modifier: "Shift".into(),
         restart_app_key: (Key::Character("".to_string())).to_string(),
         restart_format_app_modifier: "Ctrl".into(),
@@ -54,6 +56,7 @@ fn main() {
         last_key_event: None,
         hide_buttons: false,
         counter: 0,
+        capture_screen: false,
         tasti: HashMap::new(),
         attivazione: HashMap::new(),
         count: 0,
