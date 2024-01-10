@@ -9,6 +9,7 @@ use crate::{
     window_format::MyRadio,
 };
 
+// serve a effettruare uno screenshot della schermata attuale
 pub(crate) fn screen_new(
     start_position: Point,
     end_position: Point,
@@ -33,8 +34,12 @@ pub(crate) fn screen_new(
     end_x = end_x - 2.1;
     start_x = start_x + 2.1;
     start_y = start_y + 2.1;
+
+    //elimina la cornice
     let mut width = (end_x - start_x) - 1.;
     let mut height = end_y - start_y - 1.;
+
+    // se troppo piccolo lo rendo 1 pixel
     if width < 1. {
         width = 1.;
     }
@@ -48,6 +53,7 @@ pub(crate) fn screen_new(
     return image;
 }
 
+// serve a salvare lo screenshot appena effettuato in un file secondo la convenzione scelta e il formato scelto
 pub(crate) fn save_screen_new(data: &mut AppData) {
     let new_format = data.radio_group;
 

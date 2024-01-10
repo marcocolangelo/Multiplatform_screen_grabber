@@ -24,6 +24,9 @@ use scrap::Display;
 use std::thread;
 use std::time::Duration;
 
+// Lens serve a creare una struttura dati che può essere modificata in modo sicuro da più thread
+//druid::Data invece serve a usare una struttura per il context di druid
+
 #[derive(Clone, Data, Lens)]
 pub struct AppData {
     pub(crate) is_selecting: bool,
@@ -103,8 +106,12 @@ impl Widget<AppData> for DrawingArea {
     fn event(&mut self, ctx: &mut EventCtx, event: &druid::Event, data: &mut AppData, _env: &Env) {
         ctx.request_focus();
         match event {
+            // comando per catturare l'intero schermo
             druid::Event::Command(cmd) if cmd.is(ENTIRE_SCREEN) => {
+                //sleep per il passagio da un widget all'altro
                 thread::sleep(Duration::from_millis(500));
+
+                // capture_screen serve a definire se da qualche parte si è detto di cattu4rare lo schermo
                 if data.capture_screen {
                     let start_position = Some(Point { x: 0., y: 0. });
                     let end_position = Some(Point::new(
@@ -112,6 +119,7 @@ impl Widget<AppData> for DrawingArea {
                         Display::primary().expect("err").height() as f64,
                     ));
 
+                    // cattura lo schermo e salva l'immagine in data.myimage come variabile temporanea
                     data.myimage =
                         screenshot::screen_new(start_position.unwrap(), end_position.unwrap());
                     data.capture_screen = false;
@@ -120,6 +128,8 @@ impl Widget<AppData> for DrawingArea {
                     data.end_position = None;
                 }
             }
+
+            // Evento che si attiva quando si clicca con il mouse
             druid::Event::MouseDown(mouse_event) => {
                 if data.modify == true && data.is_dragging == false {
                     data.start_position = None;
@@ -130,6 +140,8 @@ impl Widget<AppData> for DrawingArea {
                     data.is_dragging = false;
                     data.modify = false;
                 }
+
+                // se non si sta modificando il rettangolo e non si sta trascinando il rettangolo allora si può selezionare un rettangolo
                 if data.modify == false && data.is_dragging == false {
                     if mouse_event.button == MouseButton::Left {
                         data.start_position = None;
@@ -137,6 +149,7 @@ impl Widget<AppData> for DrawingArea {
                         let os = env::consts::OS;
                         match os {
                             "windows" => {
+                                // gestisci il fattore di scala per il mouse event perchè è in coordinate dello schermo e non del widget druid
                                 let scale_factor_x = ctx.window().get_scale().unwrap().x();
                                 let scale_factor_y = ctx.window().get_scale().unwrap().y();
                                 let coord = druid::Point {
@@ -173,6 +186,8 @@ impl Widget<AppData> for DrawingArea {
                 }
                 if data.is_dragging == true {
                     //println!("{:?}",(mouse_event.pos - data.rect.origin()).hypot());
+
+                    // se si sta trascinando il rettangolo allora si può modificare il rettangolo solo se si clicca su uno dei 4 angoli del rettangolo
                     if (mouse_event.pos - data.rect.origin()).hypot() < 70.0 {
                         ctx.set_cursor(&druid::Cursor::Crosshair);
                         data.where_dragging = Some(DragHandle::TopLeft);
@@ -221,6 +236,8 @@ impl Widget<AppData> for DrawingArea {
                             });
                             data.end_position = Some(coord);
                         }
+
+                        // richiede di aggiornare il widget per ridisegnare il rettangolo con la nuova posizione finale del rettangolo
                         if ctx.is_active() {
                             let scale_factor_x = ctx.window().get_scale().unwrap().x();
                             let scale_factor_y = ctx.window().get_scale().unwrap().y();
@@ -270,6 +287,8 @@ impl Widget<AppData> for DrawingArea {
                     ctx.request_paint();
                 }
             }
+
+            // Evento che si attiva quando si rilascia il mouse
             druid::Event::MouseUp(mouse_event) => {
                 if data.is_dragging == true {
                     data.where_dragging = None;
@@ -284,6 +303,7 @@ impl Widget<AppData> for DrawingArea {
                         let os = env::consts::OS;
                         match os {
                             "windows" => {
+                                // prima di salvare il rettangolo verifica che è tutto okay e aggiusta dove devi aggiustare
                                 let scale_factor_x = ctx.window().get_scale().unwrap().x();
                                 let scale_factor_y = ctx.window().get_scale().unwrap().y();
                                 let coord = druid::Point {
@@ -307,6 +327,7 @@ impl Widget<AppData> for DrawingArea {
                                     data.end_position = Some(coord);
                                 }
 
+                                // Calcola il rettangolo selezionato e salvalo in data.rect
                                 data.rect = druid::Rect::from_points(
                                     data.start_position_to_display.unwrap(),
                                     data.end_position_to_display.unwrap(),
@@ -362,6 +383,9 @@ impl Widget<AppData> for DrawingArea {
         }
     }
 
+    // Questa funzione serve a definire il ciclo di vita del widget e a definire cosa fare quando
+    // si aggiorna il widget (quando si ridisegna) e quando si cambia la dimensione del widget
+    // ma noi lo usiamo principalemnte per inviare messaggio al thread principale di cattura dello schermo
     fn lifecycle(
         &mut self,
         ctx: &mut druid::LifeCycleCtx,
@@ -374,6 +398,7 @@ impl Widget<AppData> for DrawingArea {
         }
     }
 
+    // Questa funzione serve a definire cosa fare quando si aggiorna il widget (quando si ridisegna)
     fn update(
         &mut self,
         ctx: &mut druid::UpdateCtx,
@@ -419,6 +444,7 @@ impl Widget<AppData> for DrawingArea {
         }
     }
 
+    // Questa funzione serve a definire cosa disegnare nel widget e come disegnarlo (con quale colore, con quale font, ecc)
     fn paint(&mut self, paint_ctx: &mut PaintCtx, data: &AppData, _env: &Env) {
         if let Some(_start) = data.start_position {
             if let Some(_end) = data.end_position {
@@ -426,6 +452,7 @@ impl Widget<AppData> for DrawingArea {
                     let os = env::consts::OS;
                     match os {
                         "windows" => {
+                            // disegna il rettangolo selezionato
                             let start_points = data.start_position_to_display.unwrap();
                             let end_points = data.end_position_to_display.unwrap();
                             let rect = druid::Rect::from_points(start_points, end_points);
@@ -449,6 +476,7 @@ impl Widget<AppData> for DrawingArea {
 }
 struct MyViewHandler;
 
+//controller per gestire eventi collegati al widget DrawingArea ma gestiti da contesti esterni a drawing_area
 impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
     fn event(
         &mut self,
@@ -461,18 +489,20 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
         ctx.request_focus();
 
         match event {
+            // Evento che si attiva quando arriva il comando SAVE_FILE_AS
             Event::Command(cmd) if cmd.is(druid::commands::SAVE_FILE_AS) => {
                 if let Some(file_info) = cmd.get(druid::commands::SAVE_FILE_AS) {
+                    // Salva l'immagine in data.myimage nel percorso specificato
                     data.file_path = file_info.path().to_path_buf().to_str().unwrap().to_string();
 
                     ctx.set_handled();
                 }
             }
+
+            // evento per gestire i tasti premuti
             Event::KeyDown(key_event) => {
                 let key;
-                if key_event.key != Key::CapsLock
-                //bisogna forse aggiungere anche FnLock? Da rivedere
-                {
+                if key_event.key != Key::CapsLock {
                     if !data.tasti.contains_key(&key_event.key) {
                         if key_event.key != Key::Control
                             && key_event.key != Key::Shift
@@ -481,6 +511,8 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                         {
                             key = key_event.key.to_string().to_ascii_lowercase();
 
+                            // data.tasti serve a memorizzare i tasti premuti in modo da poterli confrontare con le hotkeys salvate
+                            // sistema di doppio buffer per gestire schiaccio e rilascio di una combinazione di tasti
                             data.tasti
                                 .insert(Key::Character(key.clone()), Key::Character(key.clone()));
                         } else {
@@ -505,6 +537,9 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                         key = Key::Character(key_event.key.to_string().to_ascii_lowercase());
                     }
 
+                    // se il tasto premuto è presente in data.tasti allora lo rimuove da data.tasti e lo aggiunge a data.attivazione
+                    //serve a gestire il doppio buffer per gestire schiaccio e rilascio di una combinazione di tasti evitando
+                    // ghost key
                     if data.tasti.contains_key(&key) && !data.attivazione.contains_key(&key) {
                         data.attivazione.insert(key.clone(), key.clone());
                         data.tasti.remove(&key);
@@ -513,9 +548,14 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                     if data.count <= 0 && !data.attivazione.is_empty() {
                         data.count = 0;
 
-                        //save hotkey
+                        //verifica se la combinazione di tasti premuti è una delle hotkeys salvate
+
+                        // data.hotkeys.get(i) dove i è l'indice della hotkey salvata in data.hotkeys
                         let mut found = true;
+
+                        //save screen hotkey
                         for key in data.attivazione.keys() {
+                            // 0 significa che è la hotkey per salvare l'immagine
                             if !data.hotkeys.get(0).unwrap().keys.contains_key(key)
                                 || data.hotkeys.get(0).unwrap().keys.len()
                                     != data.attivazione.keys().len()
@@ -615,7 +655,7 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                             }
                         }
 
-                        //restart from shortkeys
+                        //restart from shortkeys - vai alla finestra per scegliere le hotkeys
                         let mut found = true;
                         if !data.is_found {
                             for key in data.attivazione.keys() {
@@ -657,6 +697,7 @@ impl<W: Widget<AppData>> Controller<AppData, W> for MyViewHandler {
                         }
 
                         //restart from format hotkey
+                        //per scegliere il formato dell'immagine
                         let mut found = true;
 
                         if !data.is_found {
@@ -965,6 +1006,7 @@ pub(crate) fn build_ui() -> impl Widget<AppData> {
                             ))
                             .with_child(Label::new(s))
                             .with_child(
+                                // questo mostra l'immagine catturata se è presente altrimenti mostra un rettangolo vuoto
                                 Image::new(ImageBuf::from_raw(
                                     data.myimage.clone().into_raw(),
                                     ImageFormat::RgbaSeparate,
@@ -984,6 +1026,7 @@ pub(crate) fn build_ui() -> impl Widget<AppData> {
                         Display::primary().expect("erro").width() as f64,
                         Display::primary().expect("erro").height() as f64,
                     )
+                    //imposto sfondo viola
                     .background(BackgroundBrush::Color(Color::rgba(
                         60. / 255.,
                         8. / 255.,

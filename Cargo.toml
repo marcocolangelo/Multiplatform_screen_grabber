@@ -7,13 +7,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rdev="0.5.3"
-scrap="0.5"
+rdev="0.5.3" 
+scrap="0.5" 
 image="0.24.7"
 druid ={ version= "0.8.3", features=["im"]}
 screenshots="0.8.3"
 druid-shell= "0.8.3"
-iced= "0.10.0"
-clipboard="0.5"
 arboard = "3.2.0"
 chrono = "0.4.31"

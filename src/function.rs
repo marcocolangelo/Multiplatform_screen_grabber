@@ -107,6 +107,10 @@ pub(crate) fn edit_rect(
     data: &mut AppData,
     mouse_event: &MouseEvent,
 ) {
+    // gestisce il drag and drop del rettangolo di selezione dell'area da catturare dello screenshot e ne aggiorna le coordinate di conseguenza
+    // (in base al drag and drop)
+    // vengono controllate le coordinate del rettangolo di selezione per evitare che il rettangolo esca dallo schermo
+    // anche attraverso la verifica del punto in cui si trova il mouse quando viene rilasciato il tasto del mouse
     match handle {
         DragHandle::TopLeft => {
             data.rect.x0 = mouse_event.pos.x;
