@@ -44,9 +44,11 @@ impl Controller<String, TextBox<String>> for MyController {
         data: &mut String,
         env: &Env,
     ) {
+        // serve per far si che il testo inserito sia sempre in minuscolo
         match event {
             KeyDown(_key_event) => {
                 if data.len() >= 1 {
+                    // facciamo truncate perchè il testo inserito si ripete
                     data.truncate(0);
                 }
             }
@@ -81,6 +83,7 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
             TextBox::new()
                 .controller(MyController)
                 .lens(drawing_area::AppData::save_image_key)
+                // disabilita se il modificatore è Escape o Enter
                 .disabled_if(|data, _| {
                     data.save_image_modifier == "Escape" || data.save_image_modifier == "Enter"
                 })
@@ -262,6 +265,8 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 .fix_size(26., 26.),
         );
 
+    // questa serve a  far si che quando si clicca su apply, si chiuda la finestra e si apra quella di format
+    // serve anche a salvare le hotkeys inserite dall'utente in un vettore di struct MyHotkey (vedi crate::drawing_area)
     let apply_button =
         Button::new("Apply").on_click(|ctx, data: &mut drawing_area::AppData, _env| {
             // Qui puoi definire le tue HotKey basate sui valori in data
@@ -277,21 +282,31 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 "None" => None,
                 _ => None,
             };
+
+            //key è la combinazione di tasti inserita dall'utente tramite interfaccia grafica
             let key = data.save_image_key.clone();
             let mut shortcut = MyHotkey {
                 keys: HashMap::new(),
             };
+
+            // riempiamo shortcut con l'effettiva combinazione di tasti
+            // se key.is_empty() è false allora inseriamo la combinazione di tasti
             if !key.is_empty() {
                 shortcut
                     .keys
                     .insert(Key::Character(key.clone()), Key::Character(key.clone()));
             }
+
+            // se save_image_modifier è None, allora non inseriamo niente perchè non è stato inserito niente dall'utente
+            // verifichiamo sia se è vuota sia che non sia None insomma
             if save_image_modifier != None {
                 shortcut.keys.insert(
                     save_image_modifier.clone().unwrap(),
                     save_image_modifier.clone().unwrap(),
                 );
             }
+
+            // inseriamo shortcut nel vettore di struct MyHotkey di data
             data.hotkeys.push(shortcut);
 
             if data.start_image_modifier.eq("Shift") {
@@ -490,6 +505,7 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
             }
             data.hotkeys.push(shortcut);
 
+            // qui si apre la finestra di format se tutti i campi sono compilati e se non ci sono shortkeys uguali
             let format_window = WindowDesc::new(window_format::build_ui())
                 .transparent(false)
                 .title("Choose the format. Default is .png")
@@ -497,6 +513,7 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                 .set_position(druid::Point::new(500., 300.))
                 .set_always_on_top(true);
 
+            // se tutti i campi sono compilati e se non ci sono shortkeys uguali, allora si apre la finestra di format
             if function::are_all_fields_completed(data) && !function::some_fields_are_equal(data) {
                 if data.show_drawing {
                     let display_primary = Display::primary().expect("error");
@@ -523,6 +540,7 @@ pub(crate) fn ui_builder() -> impl Widget<drawing_area::AppData> {
                     ctx.new_window(format_window);
                 }
 
+                // switch_window serve per far si che quando si clicca su apply, si chiuda la finestra e si apra quella di format
                 data.switch_window = true;
                 ctx.submit_command(druid::commands::CLOSE_WINDOW.to(ctx.window_id()));
 
